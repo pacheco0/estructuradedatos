@@ -1,0 +1,32 @@
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+using namespace std;
+void complemento ();
+void sumadigitos ();
+void main()
+{	int opcion;
+	do {
+		cout<<"Menu"<<endl;
+		cout<<"1. Complemento"<<endl;
+		cout<<"2. Suma Digitos"<<endl;
+		cout<<"3. Salir"<<endl;
+		cout<<"Ingrese su eleccion:"<<endl;
+		cin>>opcion;
+		switch(opcion)
+		{
+		case 1: complemento();
+			break;
+		case 2: sumadigitos();
+			break;
+		case 3: cout<<"Salir"<<endl;
+			break;
+		default: cout<<"Error"<<endl;
+			break;
+		}
+     }while (opcion!=0);
+}
+void complemento ()
+{}
+void sumadigitos ()
+{}
