@@ -1,0 +1,85 @@
+//CIRCULO.H
+
+#pragma once
+class Circulo
+{
+private:
+	float p;
+	float a;
+	int r;
+public:
+	Circulo(void);
+	~Circulo(void);
+void calcperimetro(int r);
+void calcarea(int r);
+};
+
+//CIRCULO.CPP
+
+#include "StdAfx.h"
+#include "Circulo.h"
+#include <iostream>
+using namespace std;
+
+Circulo::Circulo(void)
+{
+}
+
+
+Circulo::~Circulo(void)
+{
+}
+void Circulo::calcperimetro(int r)
+{ float p;
+	p=(2*3.14*r);
+	cout<<"El Perimetro es: "<<p<<endl;
+}
+void Circulo::calcarea(int r)
+{ float a;
+	a=(3.14*r*r);
+	cout<<"El Area es: "<<a<<endl;
+}
+
+//MAIN.CPP
+
+#include "stdafx.h"
+#include "Conio.h"
+#include <iostream>
+#include "Circulo.h"
+using namespace std;
+void main () 
+{
+Circulo Circulo1;	
+int r,op;
+float p,a;
+do{
+cout<<"--MENU--"<<endl;
+cout<<"1.- Perimetro de un Circulo"<<endl;
+cout<<"2.- Area de un Circulo"<<endl;
+cout<<"0.- Salir"<<endl;
+
+cout<<"Ingrese Una Opcion: "<<endl;
+cin>>op;
+
+	switch(op){
+				case 1: 
+						cout<<"Ingrese Valor de Radio: "<<endl;
+						cin>>r;
+						Circulo1.calcperimetro(r);
+						break;
+				case 2: 
+						cout<<"Ingrese Valor de Radio: "<<endl;
+						cin>>r;
+						Circulo1.calcarea(r);
+						break;
+				case 0: cout<<"Saliendo del Programa"<<endl;
+					break;
+				default: cout<<"!!!!!!!!Error!!!!!!!!!!!!!"<<endl;
+
+	          }
+
+ }while(op!=0);
+	 
+getch();
+
+}
