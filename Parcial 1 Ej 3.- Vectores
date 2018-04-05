@@ -1,0 +1,111 @@
+//Clase
+
+#pragma once
+class vectores
+{
+private:
+	int vec[];
+public:
+	vectores(void);
+	~vectores(void);
+
+	void cargarvector(int vec[],int n);
+	void mostrarvector(int vec[],int n);
+	void menorvectoc(int vec[],int n);
+	void ordenarvector(int vec[],int n);
+
+};
+
+//CONSTRUCTOR Y DESTRUCTOR
+
+#include "StdAfx.h"
+#include "vectores.h"
+#include <iostream>
+using namespace std;
+
+vectores::vectores(void)
+{
+}
+
+
+vectores::~vectores(void)
+{
+}
+
+void vectores::cargarvector(int vec[],int n)
+{
+for(int i=0;i<n;i++)
+{
+	cout<<"["<<i<<"]=";
+	cin>>vec[i];
+}
+
+}
+void vectores::mostrarvector(int vec[],int n)
+{
+	cout<<"vector en forma ascendente: "<<endl;
+	for(int i=0;i<n;i++){
+		cout<<vec[i];
+		cout<<" ";
+	
+	}
+
+}
+void vectores::menorvectoc(int vec[],int n)
+{
+	int men=100;
+for(int i=0;i<n;i++)
+{
+if(vec[i]<men)
+	men=vec[i];
+}
+cout<<"el menor vector es: "<<men<<endl;
+}
+void vectores::ordenarvector(int vec[],int n)
+{
+	int  aux;
+	for(int i=0;i<n;i++)
+	{
+	for(int j=i+1;j<n;j++)
+	{
+		if(vec[i]>vec[j])
+		{
+		aux=vec[i];
+		vec[i]=vec[j];
+		vec[j]=aux;
+		}
+	
+	}
+	}
+}
+
+//MAIN
+
+#include "stdafx.h"
+#include "vectores.h"
+#include <iostream>
+#include <conio.h>
+using namespace std;
+#define NMAX 20
+void main()
+{
+	int n,vec[NMAX];
+	vectores vectores1;
+	do{
+	
+	cout<<"ingrese el numero de elementos: ";
+	cin>>n;
+	}while(n>NMAX || n<=0);
+
+	vectores1.cargarvector(vec,n);
+	cout<<"\n";
+	vectores1.menorvectoc(vec,n);
+	cout<<"\n";
+	vectores1.ordenarvector(vec,n);
+	vectores1.mostrarvector(vec,n);
+
+
+	getch();
+
+
+}
