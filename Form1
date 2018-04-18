@@ -1,5 +1,5 @@
 #pragma once
-#include "login3.h"
+#include "login.h"
 
 namespace Clases {
 
@@ -142,7 +142,7 @@ namespace Clases {
 					 MessageBoxButtons::OK,MessageBoxIcon::Error); 
 				}else
 				{
-				 login3 ^ x = gcnew login3();
+				 login ^ x = gcnew login();
 				 this -> Hide();
 				 x -> ShowDialog();
 				 this->Close();
