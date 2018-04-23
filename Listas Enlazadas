@@ -1,7 +1,34 @@
+#pragma once
+
+class List
+{
+    public:
+        List();
+        ~List();
+ 
+        char nombres;
+        char apellidos;
+        char dirreccion;
+        int telefono;
+ 
+    private:
+ void menu_actualizar;
+ void registrar_pacientes(PLista &lista);
+ void eliminar_paciente(PLista &lista);
+ void actualizar_paciente(PLista lista);
+ void mostrar_pacientes(PLista q);
+ void copiar_datos_paciente(PLista lista)
+};
+ 
+#endif // LIST_H
+
+
+------------------------------------------------------------------------
 #include "StdAfx.h"
 #include<iostream>
 #include<cstdlib>
 #include<string.h>
+#include "list.h"
 #define maxchar 50
 
 using namespace std;
