@@ -1,0 +1,234 @@
+1.- EN UNA MATRIZ C DE MX7 SE ENCUENTRAN ALMACENADAS LAS VENTAS POR PRODUCTO DE MAXIMO 7 SUCURSALES DE UN GRUPO DE M PRODUCTOS.
+    EL CODIGO Y LA DESCRIPCION DE LOS PRODUCTOS SE ENCUENTRAN ALMACENADOS EN UN VECTOR X DE M PRODUCOTS; ELABORAR UN PROGRAMA
+    DE MODO VISUAL EN C++ QUE PERMITA CALCULAR E IMPRIMIR LOS SIGUIENTES RESULTADOS:
+    
+    a) DETERMINAR LOS PRODUCTOS QUE MAS SE VENDEN EN CADA SUCURSAL
+    b) CANTIDAD TOTAL DE PRODUCTOS VENDIDOS EN CADA SUCURSAL, INDICANDO CODIGO Y DESCRIPCION
+    c) EL PRODUCTO MAS VENDIDO DE TODAS LAS SUCURSALES
+    
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include <string>
+
+#define MAX 50
+
+using namespace std;
+
+struct vec
+{
+	int cod;
+	string descripcion;
+};
+void cargarvector(int n, vec x[]);
+void cargarmatriz(int m, int mat[MAX][MAX], vec x[]);
+int main()
+{
+	int mat[MAX][MAX];
+	vec x[MAX];
+	int m;
+	do
+	{
+		cout<<"Cantidad de Tipos de Productos: "<<endl;
+		cin>>m;
+	}while ((m<=0) || (m>MAX));
+	 
+	cargarvector(m,x);
+	cargarmatriz(m,mat,x);
+
+	for(int i=0; i<m; i++)
+		{for(int j=0;j<7;j++)
+			{int may=0;
+				while (mat[i][j]>may)
+					{
+						may=mat[i][j];
+					};
+			}
+		}
+	_getch();
+	return (0);
+}
+
+void cargarvector (int m, vec x[])
+{
+	for( int i=0; i<m; i++)
+	{
+		cout<<"Ingrese el Codigo del Producto ["<<i<<"]: "<<endl;
+		cin>> x[i].cod;
+		cin.ignore();
+		getline(cin,x[i].descripcion);
+	}
+}
+
+void cargarmatriz (int m, int mat[MAX][MAX], vec x[])
+{
+	for (int i=0;i<m;i++)
+		{for (int j=0;j<7;j++)
+			{
+				cout<<"Ingrese ["<<i<<"]: "<<endl;
+				cin>>mat[i][j];
+				cout<<"Ingrese Descripcion del Producto ["<<i<<"]: "<<endl;
+				cin>>x[i].descripcion;
+			}
+		}
+}
+
+2.- ESCRIBIR UN PROGRAMA EN C++ UTILIZANDO CLASES QUE MANEJE PILAS, CREA UNA CLASE QUE INCLUYA METODOS PARA REALIZAR:
+    
+    a) HACER UN METODO DE INSERTAR O PUSH
+    b) METODO DE POP
+    c) CREAR PROGRAMA PRINCIPAL QUE PERMITA INGRESAR VARIOS NUMEROS A LA VEZ USANDO PUSH Y QUE PUEDA MOSTRAR PILA
+    
+ //PILAS.H
+ 
+ #pragma once
+
+const int full=100;
+
+class pilas
+
+{
+  private:
+	int pila[full], tope;
+  public:
+	pilas(void);
+	~pilas(void);
+	bool push(int data);
+	bool pop(int &data);
+	bool siestavacia();
+	bool siestallena();
+	void mostrar();
+	void mostrartope();
+};
+
+//PILAS.CPP
+
+#include "StdAfx.h"
+#include "pilas.h"
+#include <iostream>
+using namespace std;
+
+pilas::pilas(void)
+{
+ tope=(-1);
+}
+
+pilas::~pilas(void)
+{
+}
+
+bool pilas::siestavacia()
+{
+ if(tope==-1)
+ {
+ return true;
+ }
+ else
+ return false;
+}
+
+bool pilas::siestallena()
+{
+ if(tope==full-1)
+ return true;
+ else
+ return false;
+}
+
+bool pilas::push(int data)
+{
+ if (siestallena()==false)
+ {
+ tope++;
+ pila[tope]=data;
+ return true;
+ }
+ else
+ return false;
+}
+bool pilas::pop(int &data)
+{
+ if (siestavacia()==false)
+ {
+ data=pila[tope];
+ tope--;
+ return true;
+ }
+ else
+ return false;
+}
+void pilas::mostrar()
+{
+ if(siestavacia()==true)
+ cout<<" la pila esta vacia "<<endl;
+ else
+ { for(int i=tope;i>=0;i--)
+ cout<<" pila["<<i<<"]= "<<pila[i]<<endl;
+ }
+}
+
+void pilas::mostrartope()
+{
+ cout<<tope<<":"<<pila[tope]<<endl;
+}
+
+//PRINCIPAL
+
+#include "stdafx.h"
+#include <iostream>
+#include "pilas.h"
+#include "stdlib.h"
+#include "conio.h"
+using namespace std;
+
+void main()
+{ pilas pilas1,pilas2;
+ int op,i,t,x, pilas[full], tope;
+ do{
+ cout<<"-----MENU-----\n";
+ cout<<"1) Push\n";
+ cout<<"2) Pop\n";
+ cout<<"3) Mostrar\n";
+ cout<<"4) Tope\n";
+ cout<<"0) Salir\n";
+ cin>>op;
+ switch(op)
+ {
+ case 1:
+
+ if(pilas1.siestallena()==false)
+ {cout<<"INGRESE DATO:"<<endl;
+  cin>>x;
+      pilas1.push(x);
+     }
+     else
+ cout<<"LA PILA ESTA LLENA"<<endl;
+ break;
+ case 2:
+  if(pilas1.siestavacia()==true)
+  cout<<"LA PILA SE ENCUENTRA VACIA:"<<endl;
+         else
+  pilas1.pop(x);
+ break;
+ case 3:
+ pilas1.mostrar();
+ break;
+ case 4:
+ pilas1.mostrartope();
+ break;
+ case 0:
+ cout<<"SALIR"<<endl;
+ break;
+ default:
+ cout<<"error"<<endl;
+ break;
+ }
+ getch();
+
+ system("cls");
+
+ }while(op!=0);
+
+ getch();
+
+}
